@@ -131,7 +131,7 @@ const activateAccount = async (req, res) => {
     const data = jwt.verify(token, "VERFYEMAIL1233");
 
     await User.findByIdAndUpdate(data._id, { verified: true });
-    res.redirect("http://127.0.0.1:5173/");
+    res.redirect(process.env.FRONTEND_URL);
   } catch (err) {
     res.json({ success: false, message: "Link Expired" });
   }
