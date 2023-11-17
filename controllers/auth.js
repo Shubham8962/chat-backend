@@ -107,7 +107,7 @@ const signup = async (req, res) => {
       html: `
       <h1> Welcome in GupShup Family ! </h1>
       <p> We are happy to onboard you </p>
-      <a href="http://127.0.0.1:8000/auth/activate-account/${token}"> Click here to verify the email </a>
+      <a href="${process.env.BACKEND_URL}/auth/activate-account/${token}"> Click here to verify the email </a>
       `,
     };
 
@@ -138,7 +138,7 @@ const activateAccount = async (req, res) => {
 };
 
 const uploadProfilPic = async (req, res) => {
-  let profilePic = `http://localhost:8000/uploads/${req.file.filename}`;
+  let profilePic = `${process.env.BACKEND_URL}/uploads/${req.file.filename}`;
 
   await User.findByIdAndUpdate(req.user._id, {
     profilePic: profilePic,
